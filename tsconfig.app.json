@@ -10,7 +10,7 @@
       "@/*": [
         "./src/*"
       ]
-    }
+    },
 
     /* Bundler mode */
     "moduleResolution": "bundler",
