@@ -29,10 +29,10 @@ const NavBar: React.FC = () => {
     { label: 'About', path: '/about' },
   ];
 
-  setIsLoggedIn(true);
+  // setIsLoggedIn(true);
 
   return (
-    <div className="fixed flex flex-row gap-8 justify-between items-center z-10 top-0 w-full px-4 py-2 bg-primary text-primary-foreground">
+    <div className="sticky flex flex-row gap-8 justify-between items-center z-10 top-0 w-full px-4 py-2 bg-primary text-primary-foreground">
       <div className="flex flex-row gap-4">
         <div className="after:absolute after:left-0 after:bottom-0 after:w-full after:h-0.5 after:bg-silver/80"></div>
         <div className="px-8">
