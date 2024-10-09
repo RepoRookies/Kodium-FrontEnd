@@ -24,12 +24,10 @@ const NavBar: React.FC = () => {
 
   const navigationElements: NavigationElement[] = [
     { label: 'Home', path: '/' },
+    { label: 'Learn', path: '/learn' },
     { label: 'Problems', path: '/problems' },
     { label: 'Contest', path: '/contest' },
-    { label: 'About', path: '/about' },
   ];
-
-  // setIsLoggedIn(true);
 
   return (
     <div className="sticky flex flex-row gap-8 justify-between items-center z-10 top-0 w-full px-4 py-2 bg-primary text-primary-foreground">

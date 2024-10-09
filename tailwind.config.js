@@ -86,10 +86,15 @@ module.exports = {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0' },
         },
+        'flicker': {
+          '0%, 100%': { color: 'hsl(var(--silver))' },
+          '50%': { color: 'hsl(var(--gold))', opacity: '0.8' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        flicker: 'flicker 2.5s infinite',
       },
     },
   },
