@@ -48,13 +48,15 @@ interface Topic {
 
 type Topics = Topic[];
 
-const topics: Topics = [{
-  title: 'Binary Search',
-  description:
-    'Binary Search is a fundamental algorithm that quickly finds the position of a target value within a sorted array.',
-  editorialUrl: '/learn/binary-search',
-  problemUrl: '/problems/binary-search',
-}];
+const topics: Topics = [
+  {
+    title: 'Binary Search',
+    description:
+      'Binary Search is a fundamental algorithm that quickly finds the position of a target value within a sorted array.',
+    editorialUrl: '/learn/binary-search',
+    problemUrl: '/problems/binary-search',
+  },
+];
 
 const TopicSection: React.FC = () => {
   const selectedImage = abstractImages[getIndexForToday(abstractImages.length)];
@@ -64,7 +66,8 @@ const TopicSection: React.FC = () => {
     <section className="flex flex-col justify-center gap-4 max-w-md">
       <FlickerTitle>
         <DiamondPlus size={32} />
-        Topic Of The Day</FlickerTitle>
+        Topic Of The Day
+      </FlickerTitle>
       <Card className="bg-primary text-primary-foreground">
         <div className="h-48 w-full overflow-hidden p-1">
           <img

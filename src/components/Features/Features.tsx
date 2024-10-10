@@ -17,7 +17,7 @@ const FeaturesGrid: React.FC<FeaturesGridProps> = ({ features }) => {
         {features.map((feature, index) => (
           <div
             key={index}
-            className="flex flex-col items-center max-w-xs p-6 rounded-lg bg-primary/30 border-transparent hover:border-gold border-2 shadow-lg hover:shadow-xl transition-shadow duration-300"
+            className="flex flex-col items-center max-w-xs p-6 rounded-lg bg-primary/30 shadow-lg hover:shadow-xl transition-shadow duration-300"
           >
             <div className="mb-4">{feature.logo}</div>
             <h3 className="text-xl font-semibold mb-2 text-center">{feature.title}</h3>

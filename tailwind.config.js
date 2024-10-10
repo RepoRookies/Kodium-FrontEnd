@@ -86,7 +86,7 @@ module.exports = {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0' },
         },
-        'flicker': {
+        flicker: {
           '0%, 100%': { color: 'hsl(var(--silver))' },
           '50%': { color: 'hsl(var(--gold))', opacity: '0.8' },
         },
