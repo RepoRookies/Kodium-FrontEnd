@@ -7,7 +7,16 @@ interface FlickerTitleProps {
 }
 
 const FlickerTitle: React.FC<FlickerTitleProps> = ({ className, children }) => {
-  return <span className={cn('inline-flex gap-2 animate-flicker text-primary-foreground text-2xl font-bold', className)}>{children}</span>;
+  return (
+    <span
+      className={cn(
+        'inline-flex gap-2 animate-flicker text-primary-foreground text-2xl font-bold',
+        className
+      )}
+    >
+      {children}
+    </span>
+  );
 };
 
 export default FlickerTitle;

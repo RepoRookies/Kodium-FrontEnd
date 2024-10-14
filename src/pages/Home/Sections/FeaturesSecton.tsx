@@ -1,5 +1,5 @@
-import React from 'react'
-import FeaturesGrid from '@/components/Features/Features.tsx'
+import React from 'react';
+import FeaturesGrid from '@/components/Features/Features.tsx';
 import { Code, Users, Shield, BookOpen } from 'lucide-react';
 
 const features = [
@@ -31,6 +31,6 @@ const FeaturesSecton: React.FC = () => {
       <FeaturesGrid features={features} />
     </div>
   );
-}
+};
 
-export default FeaturesSecton
+export default FeaturesSecton;

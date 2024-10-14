@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import NavLinkEffect from './NavLinkEffect.tsx';
 import logo from '../../assets/images/kodium-logo.png';
 import {
@@ -20,7 +20,7 @@ interface NavigationElement {
 
 const NavBar: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  const [active, setActive] = useState<string>('Home');
+  const [active, setActive] = useState<string>(useLocation().pathname);
 
   const navigationElements: NavigationElement[] = [
     { label: 'Home', path: '/' },
@@ -39,10 +39,10 @@ const NavBar: React.FC = () => {
         <NavigationMenu>
           <NavigationMenuList>
             {navigationElements.map((element, index) => (
-              <NavLinkEffect isActive={active === element.label} color="gold" key={index}>
+              <NavLinkEffect isActive={active === element.path} color="gold" key={index}>
                 <Link to={element.path}>
                   <NavigationMenuItem
-                    onClick={() => setActive(element.label)}
+                    onClick={() => setActive(element.path)}
                     className={navigationMenuTriggerStyle()}
                   >
                     {element.label}
@@ -62,9 +62,16 @@ const NavBar: React.FC = () => {
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
           ) : (
-            <Button variant="gold" size="sm" className="mx-4 font-bold uppercase">
-              Login
-            </Button>
+            <Link to="/login">
+              <Button
+                variant="gold"
+                size="sm"
+                className="mx-4 font-bold uppercase"
+                onClick={() => setActive('/login')}
+              >
+                Login
+              </Button>
+            </Link>
           )}
         </div>
       </div>
