@@ -12,18 +12,18 @@ import Problem from './pages/Problem/Problem.tsx';
 
 const App: React.FC = () => {
   return (
-      <div className='h-screen'>
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/learn" element={<Learn />} />
-          <Route path="/problems" element={<Problems />} />
-          <Route path='/problem/:id' element={<Problem />} />
-          <Route path="/contest" element={<Contest />} />
-          <Route path="/login" element={<Login />} />
-          <Route path='/register' element={<Register />} />
-        </Routes>
-      </div>
+    <div className="min-h-screen bg-primary/85">
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/learn" element={<Learn />} />
+        <Route path="/problems" element={<Problems />} />
+        <Route path="/problem/:id" element={<Problem />} />
+        <Route path="/contest" element={<Contest />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+    </div>
   );
 };
 
