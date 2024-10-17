@@ -6,6 +6,7 @@ import {
     ResizablePanelGroup
 } from "@/components/ui/resizable"
 import MarkdownRenderer from '@/components/Problem/MarkdownRenderer';
+import CodeEditor from '@/components/Problem/CodeEditor';
 
 /************ Interface Import ************/ 
 import { IProblemData } from '@/components/Problem/ProblemDataInterface';
@@ -39,6 +40,8 @@ const Problem: React.FC = () => {
     const { id:problemId }= useParams<string>()
     const [problem,setProblem] = useState<IProblemData|null>(null);
     const [loadingstate,setLoadingState] = useState<boolean>(true);
+    const [code, setCode] = useState<string>(`Your Code Goes Here `);
+    const [language, setLanguage] = useState<string>("cpp");
 
     useEffect(() => {
         fetchProblemData().then((data) => {
@@ -64,6 +67,7 @@ const Problem: React.FC = () => {
                 <ResizableHandle className='border-gold border-2' />
                 <ResizablePanel className='w-[50%] text-4xl min-w-[30%]'>
                     Right Problem Page {problemId}
+                    <CodeEditor code={code} language={language} setCode={setCode} setLanguage={setLanguage}/>
                 </ResizablePanel>
             </ResizablePanelGroup>
         </div>
