@@ -69,7 +69,7 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col justify-start items-center bg-primary/85 w-full h-full tracking-wide">
+    <div className="flex flex-col justify-start items-center w-full h-full tracking-wide">
       <Tabs defaultValue="user" className="w-[40%] pt-10">
         <TabsList className="grid w-full grid-cols-2 bg-primary text-primary-foreground">
           {loginTabs.map((tab) => (

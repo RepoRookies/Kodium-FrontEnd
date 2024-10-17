@@ -52,7 +52,7 @@ const Problem: React.FC = () => {
     }
 
     return (
-        <div className='bg-primary/80 min-h-[100vh] w-full p-0 '>
+        <div className='min-h-[100vh] w-full p-0 '>
             <ResizablePanelGroup
                 direction="horizontal"
                 className="max-w-full rounded-lg md:min-w-[450px]"

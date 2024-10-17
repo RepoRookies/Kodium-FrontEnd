@@ -55,7 +55,7 @@ const Register: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col justify-start items-center bg-primary/85 w-full tracking-wide p-8">
+    <div className="flex flex-col justify-start items-center w-full tracking-wide p-8">
       <Card className="bg-primary text-primary-foreground w-[40%]">
         <Form {...registerForm}>
           <form onSubmit={registerForm.handleSubmit(onSubmit)}>
