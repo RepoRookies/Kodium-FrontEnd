@@ -8,6 +8,7 @@ import Problems from './pages/Problems/Problems.tsx';
 import Contest from './pages/Contest/Contest.tsx';
 import Login from './pages/Login/Login.tsx';
 import Register from './pages/Register/Register.tsx';
+import Problem from './pages/Problem/Problem.tsx';
 
 const App: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ const App: React.FC = () => {
           <Route path="/" element={<Home />} />
           <Route path="/learn" element={<Learn />} />
           <Route path="/problems" element={<Problems />} />
+          <Route path='/problem/:id' element={<Problem />} />
           <Route path="/contest" element={<Contest />} />
           <Route path="/login" element={<Login />} />
           <Route path='/register' element={<Register />} />

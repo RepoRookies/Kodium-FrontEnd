@@ -44,7 +44,7 @@ const Login: React.FC = () => {
       value: 'admin',
       title: 'Admin Login',
       fields: [
-        { label: 'Admin-Key', id: 'key', placeholder: '@IIITK-Admin' },
+        { label: 'Admin-Key', id: 'key', placeholder: '@IIITK-Admin' }, 
         { label: 'Password', id: 'password', type: 'password' },
       ],
     },
