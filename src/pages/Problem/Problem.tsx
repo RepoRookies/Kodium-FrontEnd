@@ -24,13 +24,13 @@ const fetchProblemData = (): Promise<IProblemData> => {
 
 const markdown = `
 ## Problem Description
-Lorem Ipsum dolor .....
+##### Lorem Ipsum dolor .....
 
 | Input | Output |
 |----------|----------|
 | 5    |  YES   |
-| 1 2 3 4 7        |    |
-| 4    |  NO   |
+| 1 2 3 4 7        | NO   |
+| 3    |    |
 | 1 2 4 7        |    |
 
 `

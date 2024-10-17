@@ -23,6 +23,12 @@ const MarkdownRenderer: React.FC<props> = ({markdown}) => {
       <ReactMarkdown 
         remarkPlugins={[remarkGfm]}
         components={{
+          h1:({node,...props})=><div className='text-4xl' {...props}/>,
+          h2:({node,...props})=><div className='text-3xl' {...props}/>,
+          h3:({node,...props})=><div className='text-2xl' {...props}/>,
+          h4:({node,...props})=><div className='text-xl' {...props}/>,
+          h5:({node,...props})=><div className='text-lg' {...props}/>,
+          h6:({node,...props})=><div className='text-base' {...props}/>,
           // Override the default <table> rendering
           table: ({ node, ...props }) => (
             <Table {...props} className="p-4 m-4 mx-auto rounded-md">
