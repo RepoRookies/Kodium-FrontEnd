@@ -22,9 +22,9 @@ interface UserSchema {
 const Profile: React.FC = () => {
   const user: UserSchema = {
     id: '0',
-    name: 'Ankur Majumdar',
-    email: 'ankur22bcd46@iiikottayam.ac.in',
-    username: 'NVK11DGG',
+    name: 'Kodium Admin',
+    email: 'kodium@iiitk.ac.in',
+    username: 'Kodium-Admin',
   };
   return (
     <Sheet>
@@ -52,7 +52,7 @@ const Profile: React.FC = () => {
         </SheetHeader>
         <Separator className='my-6 bg-silver'/>
         <SheetFooter>
-          <SheetDescription className="flex flex-col w-full items-center justify-end gap-4">
+          <SheetDescription className="flex flex-col w-full items-center justify-end gap-2">
             {[
               { label: 'Ratings', url: '/ratings' },
               { label: 'Contests', url: '/contests' },
