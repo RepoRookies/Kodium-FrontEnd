@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -15,6 +15,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { toast } from 'sonner';
 
 const adminSchema = z.object({
   key: z.string().min(1, 'Key is Required!'),
@@ -64,8 +65,13 @@ const Login: React.FC = () => {
           },
   });
 
+  const navigate = useNavigate();
   const onSubmit = (values: AdminLogin | UserLogin) => {
-    alert(JSON.stringify(values));
+    console.log(JSON.stringify(values));
+    toast.success(
+      `Welcome ${activeTab === 'admin' ? 'Kodium Admin' : userSchema.parse(values).username}!`
+    );
+    navigate('/');
   };
 
   return (

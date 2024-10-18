@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import { Toaster } from 'sonner';
 import NavBar from './components/NavBar/NavBar.tsx';
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/Home.tsx';
@@ -23,6 +24,7 @@ const App: React.FC = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
+      <Toaster/>
     </div>
   );
 };

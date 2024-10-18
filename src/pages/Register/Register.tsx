@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -12,6 +12,17 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Button } from '@/components/ui/button';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog';
+import { toast } from 'sonner';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 
@@ -39,6 +50,11 @@ const Register: React.FC = () => {
     { label: 'Confirm Password', id: 'confirmPassword', type: 'password' },
   ];
 
+  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false); 
+  const [formData, setFormData] = useState<UserRegister | null>(null);
+
+  const navigate = useNavigate();
+
   const registerForm = useForm<UserRegister>({
     resolver: zodResolver(userSchema),
     defaultValues: {
@@ -50,17 +66,28 @@ const Register: React.FC = () => {
     },
   });
 
-  const onSubmit = (values: UserRegister) => {
-    alert(JSON.stringify(values));
+  const handleValidation = (values: UserRegister) => {
+    setFormData(values); 
+    setIsDialogOpen(true); 
+  };
+
+  const onSubmit = () => {
+    if (formData) {
+      console.log(JSON.stringify(formData));
+      toast.success("Registered Successfully! You are all Set to Login.");
+      navigate('/login');
+    }
   };
 
   return (
     <div className="flex flex-col justify-start items-center w-full tracking-wide p-8">
       <Card className="bg-primary text-primary-foreground w-[40%]">
         <Form {...registerForm}>
-          <form onSubmit={registerForm.handleSubmit(onSubmit)}>
+          <form
+            onSubmit={registerForm.handleSubmit(handleValidation)}
+          >
             <CardHeader>
-              <CardTitle className="text-gold text-center">User Registeration</CardTitle>
+              <CardTitle className="text-gold text-center">User Registration</CardTitle>
             </CardHeader>
             <CardContent className="space-y-2">
               {fields.map((field) => (
@@ -95,6 +122,30 @@ const Register: React.FC = () => {
           </form>
         </Form>
       </Card>
+
+      <AlertDialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle className="text-gold font-bold tracking-wide">
+              Are You Absolutely Sure?
+            </AlertDialogTitle>
+            <AlertDialogDescription className="text-secondary">
+              Edit Profile Feature is Not Available. Kindly, Verify Your Details & Register.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel onClick={() => setIsDialogOpen(false)} className="w-24">
+              Cancel
+            </AlertDialogCancel>
+            <AlertDialogAction
+              className="w-24"
+              onClick={onSubmit} 
+            >
+              Confirm
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };
