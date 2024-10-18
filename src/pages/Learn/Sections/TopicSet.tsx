@@ -28,8 +28,8 @@ const TopicSet = () => {
       problemLink: '',
     },
     {
-      title: 'Recurssion',
-      editorialLink: '/learn/recurssion',
+      title: 'Recursion',
+      editorialLink: '/learn/recursion',
       problemLink: '',
     },
     {
@@ -45,34 +45,31 @@ const TopicSet = () => {
 
   ];
 
-  return ( 
-    <div className="p-6 bg-primary/85 text-white min-h-svh box-border overflow-y-hidden">
-      <h1 className="text-2xl font-semibold mb-4">Learn</h1>
-      <Table className="min-w-full divide-y divide-gray-700">
+  return (
+      <Table className="text-primary-foreground font-regular">
         <TableHeader>
-          <TableRow>
-            <TableHead className="px-6 py-3 bg-gold text-left text-xs font-medium text-white uppercase tracking-wider">Title</TableHead>
-            <TableHead className="px-6 py-3 bg-gold text-left text-xs font-medium text-white uppercase tracking-wider">Editorial Link</TableHead>
-            <TableHead className="px-6 py-3 bg-gold text-left text-xs font-medium text-white uppercase tracking-wider">Problem Link</TableHead>
+          <TableRow className='bg-gold'>
+            <TableHead className="w-4xl">Title</TableHead>
+            <TableHead className="text-center">Editorial</TableHead>
+            <TableHead className="text-right">Problem</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {topics.map((topic, index) => (
-            <TableRow key={index} className="bg-gray-800 hover:bg-gray-700">
-              <TableCell className="px-6 py-4 whitespace-nowrap text-sm font-medium">{topic.title}</TableCell>
-              <TableCell className="px-6 py-4 whitespace-nowrap text-sm">
-                <Link to={topic.editorialLink} className="text-blue-400 hover:text-blue-600">
+            <TableRow key={index}>
+              <TableCell>{topic.title}</TableCell>
+              <TableCell className="text-center">
+                <Link to={topic.editorialLink} className="text-sky hover:text-sky/70">
                   View Editorial
                 </Link>
               </TableCell>
-              <TableCell className="px-6 py-4 whitespace-nowrap text-sm">
-                <Link to={topic.problemLink} className="text-blue-400 hover:text-blue-600">Problem</Link>
+              <TableCell className="text-right">
+                <Link to={topic.problemLink} className="text-sky hover:text-sky/70">Solve Problem</Link>
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
-    </div>
   );
 };
 

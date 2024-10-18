@@ -2,7 +2,7 @@ import React from 'react';
 
 const LinkedListGuide: React.FC = () => {
   return (
-    <div className="p-6 bg-primary/85 text-white shadow-md">
+    <div className="p-6 bg-primary/85 text-secondary shadow-md">
       <h1 className="text-3xl font-bold mb-4">Linked List</h1>
       <p className="mb-4">
         A linked list is a linear data structure where elements, called nodes, are stored in a sequence. 
@@ -64,24 +64,6 @@ const LinkedListGuide: React.FC = () => {
         <li>Dynamic memory allocation.</li>
         <li>Manipulating polynomial expressions.</li>
       </ul>
-
-      <h2 className="text-2xl font-semibold mb-2">Resources</h2>
-      <p className="mb-4">
-        For more information on Linked Lists, you can visit:
-      </p>
-      <a 
-        href="https://example.com/editorial/linked-list" 
-        className="text-blue-400 hover:text-blue-600 underline"
-      >
-        Read Editorial
-      </a>
-      <br />
-      <a 
-        href="https://example.com/problem/linked-list" 
-        className="text-blue-400 hover:text-blue-600 underline"
-      >
-        Solve Problem
-      </a>
     </div>
   );
 };

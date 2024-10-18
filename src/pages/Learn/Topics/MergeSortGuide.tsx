@@ -2,8 +2,8 @@ import React from 'react';
 
 const MergeSortGuide: React.FC = () => {
   return (
-    <div className="p-6 bg-primary/85 text-white shadow-md">
-      <h1 className="text-3xl font-bold mb-4">Merge Sort</h1>
+    <div className="p-6 bg-primary/85 text-secondary shadow-md">
+      <h1 className="text-3xl text-gold font-bold mb-4">Merge Sort</h1>
       <p className="mb-4">
         Merge Sort is a highly efficient sorting algorithm that follows the divide-and-conquer principle.
         It divides the unsorted list into two approximately equal halves, sorts each half, and then merges
@@ -68,24 +68,6 @@ const MergeSortGuide: React.FC = () => {
         <li>External sorting (when data doesn't fit into memory)</li>
         <li>Parallel processing of sorting tasks</li>
       </ul>
-
-      <h2 className="text-2xl font-semibold mb-2">Resources</h2>
-      <p className="mb-4">
-        For more information on Merge Sort, you can visit:
-      </p>
-      <a 
-        href="https://example.com/editorial/merge-sort" 
-        className="text-blue-400 hover:text-blue-600 underline"
-      >
-        Read Editorial
-      </a>
-      <br />
-      <a 
-        href="https://example.com/problem/merge-sort" 
-        className="text-blue-400 hover:text-blue-600 underline"
-      >
-        Solve Problem
-      </a>
     </div>
   );
 };
