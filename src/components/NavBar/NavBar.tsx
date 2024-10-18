@@ -9,9 +9,7 @@ import {
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
 import { Button } from '@/components/ui/button';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-
-import Search from '../SearchBar/SearchBar.tsx';
+import Profile from '@/components/Dashboard/Profile';
 
 interface NavigationElement {
   label: string;
@@ -19,7 +17,7 @@ interface NavigationElement {
 }
 
 const NavBar: React.FC = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const isLoggedIn: boolean = false;
   const [active, setActive] = useState<string>(useLocation().pathname);
 
   const navigationElements: NavigationElement[] = [
@@ -53,14 +51,10 @@ const NavBar: React.FC = () => {
           </NavigationMenuList>
         </NavigationMenu>
       </div>
-      <div className="flex flex-row justify-end pr-4">
-        <Search />
+      <div className="flex flex-row justify-end pl-4">
         <div className="">
           {isLoggedIn ? (
-            <Avatar className="h-9 w-9">
-              <AvatarImage src="https://github.com/shadcn.png" />
-              <AvatarFallback>CN</AvatarFallback>
-            </Avatar>
+            <Profile />
           ) : (
             <Link to="/login">
               <Button

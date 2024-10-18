@@ -1,0 +1,48 @@
+{
+  "problem": {
+    "id": 101,
+    "title": "Two Sum",
+    "difficulty": "Easy",
+    "tags": ["Array", "Hash Table"],
+    "description": "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.",
+    "input_format": "The input consists of an array of integers 'nums' of length n, and an integer 'target'.",
+    "output_format": "Return the indices of the two numbers in an array.",
+    "constraints": [
+      "2 <= nums.length <= 10^4",
+      "-10^9 <= nums[i] <= 10^9",
+      "-10^9 <= target <= 10^9",
+      "Only one valid answer exists."
+    ],
+    "example_test_cases": [
+      {
+        "input": {
+          "nums": [2, 7, 11, 15],
+          "target": 9
+        },
+        "output": [0, 1]
+      },
+      {
+        "input": {
+          "nums": [3, 2, 4],
+          "target": 6
+        },
+        "output": [1, 2]
+      },
+      {
+        "input": {
+          "nums": [3, 3],
+          "target": 6
+        },
+        "output": [0, 1]
+      }
+    ],
+    "hints": [
+      "A brute force solution would use two loops to check each pair of numbers.",
+      "Think about using a hash map to keep track of the indices of the numbers already processed."
+    ],
+    "solution_code": {
+      "language": "Python",
+      "code": "def two_sum(nums, target):\n    hashmap = {}\n    for i, num in enumerate(nums):\n        diff = target - num\n        if diff in hashmap:\n            return [hashmap[diff], i]\n        hashmap[num] = i"
+    }
+  }
+}

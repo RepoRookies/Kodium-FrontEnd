@@ -11,7 +11,7 @@ const features = [
   {
     logo: <BookOpen size={40} className="text-success" />,
     title: 'Resources',
-    description: 'Solve Provlems, and Access Editorials to Improve your Skills.',
+    description: 'Solve Problems and Access Editorials to Improve your Skills.',
   },
   {
     logo: <Users size={40} className="text-gold" />,
