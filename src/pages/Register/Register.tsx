@@ -50,7 +50,7 @@ const Register: React.FC = () => {
     { label: 'Confirm Password', id: 'confirmPassword', type: 'password' },
   ];
 
-  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false); 
+  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
   const [formData, setFormData] = useState<UserRegister | null>(null);
 
   const navigate = useNavigate();
@@ -67,14 +67,14 @@ const Register: React.FC = () => {
   });
 
   const handleValidation = (values: UserRegister) => {
-    setFormData(values); 
-    setIsDialogOpen(true); 
+    setFormData(values);
+    setIsDialogOpen(true);
   };
 
   const onSubmit = () => {
     if (formData) {
       console.log(JSON.stringify(formData));
-      toast.success("Registered Successfully! You are all Set to Login.");
+      toast.success('Registered Successfully! You are all Set to Login.');
       navigate('/login');
     }
   };
@@ -83,9 +83,7 @@ const Register: React.FC = () => {
     <div className="flex flex-col justify-start items-center w-full tracking-wide p-8">
       <Card className="bg-primary text-primary-foreground w-[40%]">
         <Form {...registerForm}>
-          <form
-            onSubmit={registerForm.handleSubmit(handleValidation)}
-          >
+          <form onSubmit={registerForm.handleSubmit(handleValidation)}>
             <CardHeader>
               <CardTitle className="text-gold text-center">User Registration</CardTitle>
             </CardHeader>
@@ -137,10 +135,7 @@ const Register: React.FC = () => {
             <AlertDialogCancel onClick={() => setIsDialogOpen(false)} className="w-24">
               Cancel
             </AlertDialogCancel>
-            <AlertDialogAction
-              className="w-24"
-              onClick={onSubmit} 
-            >
+            <AlertDialogAction className="w-24" onClick={onSubmit}>
               Confirm
             </AlertDialogAction>
           </AlertDialogFooter>

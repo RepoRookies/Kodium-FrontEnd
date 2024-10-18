@@ -50,7 +50,7 @@ const Profile: React.FC = () => {
             <div className="text-lg text-muted/90 tracking-widest font-bold">@{user.username}</div>
           </SheetDescription>
         </SheetHeader>
-        <Separator className='my-6 bg-silver'/>
+        <Separator className="my-6 bg-silver" />
         <SheetFooter>
           <SheetDescription className="flex flex-col w-full items-center justify-end gap-2">
             {[
@@ -63,7 +63,7 @@ const Profile: React.FC = () => {
                 key={index}
                 variant="ghost"
                 className="w-full text-primary-foreground hover:bg-silver/25 hover:text-secondary"
-                title='Coming Soon'
+                title="Coming Soon"
               >
                 {/* <Link to={`/user:${user.id}${link.url}`}> */}
                 {link.label}
@@ -75,6 +75,6 @@ const Profile: React.FC = () => {
       </SheetContent>
     </Sheet>
   );
-}
+};
 
-export default Profile
+export default Profile;
