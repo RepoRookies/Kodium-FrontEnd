@@ -8,10 +8,7 @@ export interface IProblemData {
   output_format: string;
   constraints: string[];
   example_test_cases: {
-    input: {
-      nums: number[];
-      target: number;
-    };
+    input: number[],
     output: number[];
   }[];
   hints: string[];

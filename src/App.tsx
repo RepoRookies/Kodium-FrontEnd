@@ -4,6 +4,7 @@ import { Toaster } from 'sonner';
 import NavBar from './components/NavBar/NavBar.tsx';
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/Home.tsx';
+import Problem from './pages/Problem/Problem.tsx';
 
 import Learn from './pages/Learn/Learn.tsx';
 import LinkedListGuide from './pages/Learn/Topics/LinkedListGuide.tsx';
@@ -34,6 +35,7 @@ const App: React.FC = () => {
           <Route path="/learn/merge-sort" element={<MergeSortGuide/>} />
 
           <Route path="/problems" element={<Problems />} />
+          <Route path="/problems/:id" element={<Problem />} />
           <Route path="/contest" element={<Contest />} />
           <Route path="/login" element={<Login />} />
           <Route path='/register' element={<Register />} />

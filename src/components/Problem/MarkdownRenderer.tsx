@@ -22,6 +22,7 @@ const MarkdownRenderer: React.FC<props> = ({ markdown }) => {
           h4: ({ node, ...props }) => <div className="text-xl" {...props} />,
           h5: ({ node, ...props }) => <div className="text-lg" {...props} />,
           h6: ({ node, ...props }) => <div className="text-base" {...props} />,
+          code: ({ node, ...props }) => <code className="block font-mono text-sm" {...props} />,
           // Override the default <table> rendering
           table: ({ node, ...props }) => (
             <Table {...props} className="p-4 m-4 mx-auto rounded-md">

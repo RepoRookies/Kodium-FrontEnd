@@ -9,6 +9,7 @@ import { IProblemData } from '@/components/Problem/ProblemDataInterface';
 
 /************ Json Data Import ************/
 import ProblemData from '@/components/Problem/ProblemData.json';
+import { map, number, string } from 'zod';
 
 // Simulate fetching problem data with a delay (or replace this with an actual API call)
 const fetchProblemData = (): Promise<IProblemData> => {
@@ -19,7 +20,15 @@ const fetchProblemData = (): Promise<IProblemData> => {
   });
 };
 
-const markdown = `
+
+
+const Problem: React.FC = () => {
+  const { id: problemId } = useParams<string>();
+  const [problem, setProblem] = useState<IProblemData | null>(null);
+  const [loadingstate, setLoadingState] = useState<boolean>(true);
+  const [code, setCode] = useState<string>(`Your Code Goes Here `);
+  const [language, setLanguage] = useState<string>('cpp');
+  const [leftPanelText, setLeftPanelText] = useState<string>(`
 ## Problem Description
 ##### Lorem Ipsum dolor .....
 
@@ -30,14 +39,8 @@ const markdown = `
 | 3    |    |
 | 1 2 4 7        |    |
 
-`;
+`);
 
-const Problem: React.FC = () => {
-  const { id: problemId } = useParams<string>();
-  const [problem, setProblem] = useState<IProblemData | null>(null);
-  const [loadingstate, setLoadingState] = useState<boolean>(true);
-  const [code, setCode] = useState<string>(`Your Code Goes Here `);
-  const [language, setLanguage] = useState<string>('cpp');
 
   useEffect(() => {
     fetchProblemData().then((data) => {
@@ -46,6 +49,32 @@ const Problem: React.FC = () => {
     });
   }, []);
 
+  useEffect(()=>{
+    setLeftPanelText(`
+### ${problem?.title} 
+#### ${problem?.description}
+| INPUT | OUTPUT  |
+|--|--|
+${problem?.example_test_cases.
+  map((val: {input:number[],output:number[]}, index: number) => 
+    `|${val.input}|${val.output}`).join('\n')
+}
+${problem?.constraints?.length? `### Constraints` : ``}
+\`\`\`
+${problem?.constraints.
+  map((val: string, index: number) => 
+    `${val}`).join('\n')}
+\`\`\`
+
+${problem?.constraints?.length? `### Hints` : ``}
+${problem?.hints.
+  map((val: string, index: number) => 
+    `\` ${val} \``).join(' \ ')}
+`
+);
+},[problem])
+
+ 
   if (loadingstate) {
     return <div>Loading...</div>;
   }
@@ -59,7 +88,7 @@ const Problem: React.FC = () => {
         <ResizablePanel className="w-[50%] text-4xl min-w-[30%]">
           Left Problem Page {problemId}
           <br />
-          <MarkdownRenderer markdown={markdown} />
+          <MarkdownRenderer markdown={leftPanelText} />
         </ResizablePanel>
         <ResizableHandle className="border-gold border-2" />
         <ResizablePanel className="w-[50%] text-4xl min-w-[30%]">
