@@ -4,7 +4,7 @@
     "title": "Two Sum",
     "difficulty": "Easy",
     "tags": ["Array", "Hash Table"],
-    "description": "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.",
+    "description": "Given an array of integers nums and an integer target,  return indices of the two numbers such that they add up to target.",
     "constraints": [
       "2 <= nums.length <= 10^4",
       "-10^9 <= nums[i] <= 10^9",
@@ -13,15 +13,15 @@
     ],
     "example_test_cases": [
       {
-        "input": [1,2,3,4,5],
+        "input": [1, 2, 3, 4, 5],
         "output": [0, 1]
       },
       {
-        "input": [1,2,3,4,5],
+        "input": [1, 2, 3, 4, 5],
         "output": [0, 1]
       },
       {
-        "input": [1,2,3,4,5],
+        "input": [1, 2, 3, 4, 5],
         "output": [0, 1]
       }
     ],

@@ -64,7 +64,7 @@ const CodeEditor: React.FC<EditorProps> = ({ code, language, setCode, setLanguag
   };
 
   return (
-    <div>
+    <div className="p-4">
       <Select onValueChange={(value) => setLanguage(value)}>
         <SelectTrigger className="w-[180px] bg-primary/85 text-primary-foreground">
           <SelectValue placeholder={'C/C++'} />
@@ -78,7 +78,7 @@ const CodeEditor: React.FC<EditorProps> = ({ code, language, setCode, setLanguag
         </SelectContent>
       </Select>
       <MonacoEditor
-        className="p-4 m-2 bg-primary/80 text-secondary/80 rounded-md"
+        className="py-2 my-2 bg-primary/80 text-secondary/80 rounded-md"
         height="400px"
         language={language}
         theme="vs-dark"

@@ -67,11 +67,13 @@ const Login: React.FC = () => {
 
   const navigate = useNavigate();
   const onSubmit = (values: AdminLogin | UserLogin) => {
-    console.log(JSON.stringify(values));
-    toast.success(
-      `Welcome ${activeTab === 'admin' ? 'Kodium Admin' : userSchema.parse(values).username}!`
-    );
-    navigate('/');
+    if (values) {
+      console.log(JSON.stringify(values));
+      toast.success(
+        `Welcome ${activeTab === 'admin' ? 'Kodium Admin' : userSchema.parse(values).username}!`
+      );
+      navigate('/');
+    }
   };
 
   return (

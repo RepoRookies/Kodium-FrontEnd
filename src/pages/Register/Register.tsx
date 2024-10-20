@@ -74,7 +74,7 @@ const Register: React.FC = () => {
   const onSubmit = () => {
     if (formData) {
       console.log(JSON.stringify(formData));
-      toast.success('Registered Successfully! You are all Set to Login.');
+      toast.success('Registered Successfully! You are all Set to Login');
       navigate('/login');
     }
   };

@@ -17,7 +17,7 @@ interface NavigationElement {
 }
 
 const NavBar: React.FC = () => {
-  const isLoggedIn: boolean = true;
+  const isLoggedIn: boolean = false;
   const [active, setActive] = useState<string>(useLocation().pathname);
 
   const navigationElements: NavigationElement[] = [

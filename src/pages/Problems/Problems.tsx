@@ -8,7 +8,7 @@ const Problems: React.FC = () => {
       <TitleSection />
       <ProblemSet />
     </div>
-  ); 
+  );
 };
 
 export default Problems;

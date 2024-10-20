@@ -22,26 +22,26 @@ import Register from './pages/Register/Register.tsx';
 
 const App: React.FC = () => {
   return (
-      <div className='min-h-screen bg-primary/85'>
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/learn" element={<Learn />} />
-          <Route path="/learn/arrays" element={<ArraysGuide/>} />
-          <Route path="/learn/bit-manipulation" element={<BitManipulationGuide/>} />
-          <Route path="/learn/recursion" element={<RecursionGuide/>} />
-          <Route path="/learn/linked-list" element={<LinkedListGuide/>} />
-          <Route path="/learn/binary-search" element={<BinarySearchGuide/>} />
-          <Route path="/learn/merge-sort" element={<MergeSortGuide/>} />
+    <div className="min-h-screen bg-primary/85">
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/learn" element={<Learn />} />
+        <Route path="/learn/arrays" element={<ArraysGuide />} />
+        <Route path="/learn/bit-manipulation" element={<BitManipulationGuide />} />
+        <Route path="/learn/recursion" element={<RecursionGuide />} />
+        <Route path="/learn/linked-list" element={<LinkedListGuide />} />
+        <Route path="/learn/binary-search" element={<BinarySearchGuide />} />
+        <Route path="/learn/merge-sort" element={<MergeSortGuide />} />
 
-          <Route path="/problems" element={<Problems />} />
-          <Route path="/problems/:id" element={<Problem />} />
-          <Route path="/contest" element={<Contest />} />
-          <Route path="/login" element={<Login />} />
-          <Route path='/register' element={<Register />} />
-        </Routes>
-        <Toaster/>
-      </div>
+        <Route path="/problems" element={<Problems />} />
+        <Route path="/problems/:id" element={<Problem />} />
+        <Route path="/contest" element={<Contest />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+      <Toaster />
+    </div>
   );
 };
 

@@ -3,15 +3,13 @@ import { Link } from 'react-router-dom';
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { Circle, CircleCheckBig, CircleFadingPlus, Tags } from 'lucide-react';
+import { Circle, CircleCheckBig, CircleFadingPlus } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 type Status = 'Attempted' | 'Unattempted' | 'Answered';
@@ -109,7 +107,7 @@ const ProblemSet: React.FC = () => {
   return (
     <Table className="text-primary-foreground font-regular">
       <TableHeader>
-        <TableRow className="bg-gold">
+        <TableRow className="bg-gold text-primary text-lg font-bold tracking-wide uppercase">
           <TableHead className="w-4">Status</TableHead>
           <TableHead>Title</TableHead>
           <TableHead className="text-center">Difficulty</TableHead>
