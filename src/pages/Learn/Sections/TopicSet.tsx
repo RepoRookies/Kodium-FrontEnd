@@ -20,12 +20,12 @@ const TopicSet = () => {
     {
       title: 'Arrays',
       editorialLink: '/learn/arrays',
-      problemLink: 'problems/remove-duplicates-from-sorted-array',
+      problemLink: '/problems/remove-duplicates-from-sorted-array',
     },
     {
       title: 'Linked List',
       editorialLink: '/learn/linked-list',
-      problemLink: 'problems/reverse-linked-list',
+      problemLink: '/problems/reverse-linked-list',
     },
     {
       title: 'Bit Manipulation',

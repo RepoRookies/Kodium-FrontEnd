@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { IProblemData } from './problem.interface';
+import { getStatusIcon, getDifficultyColor } from '@/lib/utils';
 import {
   Table,
   TableBody,
@@ -9,21 +11,10 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { Circle, CircleCheckBig, CircleFadingPlus } from 'lucide-react';
+
 import { cn } from '@/lib/utils';
 
-type Status = 'Attempted' | 'Unattempted' | 'Answered';
-type Difficulty = 'Easy' | 'Medium' | 'Hard';
-
-interface Problem {
-  status: Status;
-  title: string;
-  url: string;
-  tags: string[];
-  difficulty: Difficulty;
-}
-
-type Problems = Problem[];
+type Problems = IProblemData[];
 
 const problems: Problems = [
   {
@@ -76,32 +67,6 @@ const problems: Problems = [
     difficulty: 'Medium',
   },
 ];
-
-const getStatusIcon = (status: Status) => {
-  switch (status) {
-    case 'Unattempted':
-      return <Circle className="text-primary-foreground" />;
-    case 'Attempted':
-      return <CircleFadingPlus className="text-destructive" />;
-    case 'Answered':
-      return <CircleCheckBig className="text-success" />;
-    default:
-      return <Circle />;
-  }
-};
-
-const getDifficultyColor = (difficulty: Difficulty) => {
-  switch (difficulty) {
-    case 'Easy':
-      return 'text-success';
-    case 'Medium':
-      return 'text-gold';
-    case 'Hard':
-      return 'text-destructive';
-    default:
-      return 'text-primary-foreground';
-  }
-};
 
 const ProblemSet: React.FC = () => {
   return (

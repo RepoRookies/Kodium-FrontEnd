@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
-import MarkdownRenderer from '@/components/Problem/MarkdownRenderer';
-import CodeEditor from '@/components/Problem/CodeEditor';
+import FlickerTitle from '@/components/FlickerEffect/FlickerEffectTitle';
+import MarkdownRenderer from '@/pages/ProblemCode/Sections/MarkdownRenderer';
+import CodeEditor from '@/pages/ProblemCode/Sections/CodeEditor';
 
 /************ Interface Import ************/
-import { IProblemData } from '@/components/Problem/ProblemDataInterface';
+import { IProblemData } from '@/pages/ProblemCode/Sections/problem.interface';
 
 /************ Json Data Import ************/
-import ProblemData from '@/components/Problem/ProblemData.json';
+import ProblemData from '@/pages/ProblemCode/Sections/problem.data.json';
 import { map, number, set, string } from 'zod';
 
 // Simulate fetching problem data with a delay (or replace this with an actual API call)
@@ -85,7 +86,11 @@ ${problem?.hints.map((val: string, index: number) => `\` ${val} \``).join('  ')}
   }, [problem]);
 
   if (loadingstate) {
-    return <div>Loading...</div>;
+    return (
+      <div className="w-full h-full text-center">
+        <FlickerTitle className="mt-36 text-4xl">Loading . . .</FlickerTitle>
+      </div>
+    );
   }
 
   return (
@@ -95,7 +100,7 @@ ${problem?.hints.map((val: string, index: number) => `\` ${val} \``).join('  ')}
         className="max-w-full rounded-lg md:min-w-[450px]"
       >
         <ResizablePanel className="w-[50%] text-4xl min-w-[30%]">
-          <MarkdownRenderer markdown={leftPanelText} />
+          <MarkdownRenderer problem={problem} markdown={leftPanelText} />
         </ResizablePanel>
         <ResizableHandle className="border-gold border-2" />
         <ResizablePanel className="w-[50%] text-4xl min-w-[30%]">

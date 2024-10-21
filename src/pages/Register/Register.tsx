@@ -125,7 +125,7 @@ const Register: React.FC = () => {
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle className="text-gold font-bold tracking-wide">
-              Are You Absolutely Sure?
+              Confirm Registeration?
             </AlertDialogTitle>
             <AlertDialogDescription className="text-secondary">
               Edit Profile Feature is Not Available. Kindly, Verify Your Details & Register.
