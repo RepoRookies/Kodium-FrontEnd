@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   Table,
   TableBody,
@@ -14,40 +14,41 @@ interface Topic {
   problemLink: string;
 }
 
-// Add problemLinks here
+const topics: Topic[] = [
+  {
+    title: 'Arrays',
+    editorialLink: '/learn/arrays',
+    problemLink: '/problems/remove-duplicates-from-sorted-array',
+  },
+  {
+    title: 'Linked List',
+    editorialLink: '/learn/linked-list',
+    problemLink: '/problems/reverse-linked-list',
+  },
+  {
+    title: 'Bit Manipulation',
+    editorialLink: '/learn/bit-manipulation',
+    problemLink: '/problems/bit-manipulation',
+  },
+  {
+    title: 'Recursion',
+    editorialLink: '/learn/recursion',
+    problemLink: '/problems/recursion',
+  },
+  {
+    title: 'Binary Search',
+    editorialLink: '/learn/binary-search',
+    problemLink: '/problems/binary-search',
+  },
+  {
+    title: 'Merge Sort',
+    editorialLink: '/learn/merge-sort',
+    problemLink: '/problems/merge-sort',
+  },
+];
+
 const TopicSet = () => {
-  const topics: Topic[] = [
-    {
-      title: 'Arrays',
-      editorialLink: '/learn/arrays',
-      problemLink: 'problems/remove-duplicates-from-sorted-array',
-    },
-    {
-      title: 'Linked List',
-      editorialLink: '/learn/linked-list',
-      problemLink: 'problems/reverse-linked-list',
-    },
-    {
-      title: 'Bit Manipulation',
-      editorialLink: '/learn/bit-manipulation',
-      problemLink: '',
-    },
-    {
-      title: 'Recursion',
-      editorialLink: '/learn/recursion',
-      problemLink: '',
-    },
-    {
-      title: 'Binary Search',
-      editorialLink: '/learn/binary-search',
-      problemLink: '',
-    },
-    {
-      title: 'Merge Sort',
-      editorialLink: '/learn/merge-sort',
-      problemLink: '',
-    },
-  ];
+  const navigate = useNavigate();
 
   return (
     <Table className="text-primary-foreground font-regular">
