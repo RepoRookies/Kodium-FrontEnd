@@ -18,11 +18,11 @@ const MarkdownRenderer: React.FC<props> = ({ problem, markdown }) => {
   return (
     <>
       <div className="flex flex-row justify-between items-center pt-2 px-6 text-lg text-secondary font-semibold space-x-2 tracking-wide">
-        <div className='flex space-x-2'>
+        <div className="flex space-x-2">
           <span>Difficulty:</span>
           <span className={getDifficultyColor(problem?.difficulty)}>{problem?.difficulty} </span>
         </div>
-        <div className='flex space-x-2'>
+        <div className="flex space-x-2">
           <span>Status: </span>
           <span>{getStatusIcon(status)}</span>
         </div>

@@ -27,7 +27,7 @@ const App: React.FC = () => {
       <Toaster
         position="bottom-left"
         toastOptions={{
-          duration: 3000
+          duration: 3000,
         }}
       />
       <NavBar />
