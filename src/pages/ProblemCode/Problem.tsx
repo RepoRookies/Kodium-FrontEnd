@@ -69,7 +69,7 @@ const Problem: React.FC = () => {
 #### ${problem?.description}
 | INPUT | OUTPUT  |
 |--|--|
-${problem?.example_test_cases
+${problem?.exampleTestCases
   .map(
     (val: { input: number[]; output: number[] }, index: number) =>
       `| ${val.input.map((e) => e.toString()).join(' ')} | ${val.output.map((e) => e.toString()).join(' ')} |`

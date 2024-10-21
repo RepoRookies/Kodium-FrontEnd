@@ -20,7 +20,7 @@ const problems: Problems = [
   {
     status: 'Unattempted',
     title: 'Search Insert Position',
-    url: '/problems/search-insert-position',
+    url: 'search-insert-position',
     tags: ['Array', 'Binary Search'],
     difficulty: 'Easy',
   },
