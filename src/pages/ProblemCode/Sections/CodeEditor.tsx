@@ -64,7 +64,7 @@ const CodeEditor: React.FC<EditorProps> = ({ code, language, setCode, setLanguag
   };
 
   return (
-    <div className="p-4">
+    <div className="px-4 pt-4">
       <Select onValueChange={(value) => setLanguage(value)}>
         <SelectTrigger className="w-[180px] bg-primary/85 text-primary-foreground">
           <SelectValue placeholder={'C/C++'} />

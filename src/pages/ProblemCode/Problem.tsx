@@ -4,19 +4,14 @@ import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/componen
 import FlickerTitle from '@/components/FlickerEffect/FlickerEffectTitle';
 import MarkdownRenderer from '@/pages/ProblemCode/Sections/MarkdownRenderer';
 import CodeEditor from '@/pages/ProblemCode/Sections/CodeEditor';
-
-/************ Interface Import ************/
+import Submit from '@/pages/ProblemCode/Sections/Submit';
 import { IProblemData } from '@/pages/ProblemCode/Sections/problem.interface';
-
-/************ Json Data Import ************/
 import ProblemData from '@/pages/ProblemCode/Sections/problem.data.json';
-import { map, number, set, string } from 'zod';
 
-// Simulate fetching problem data with a delay (or replace this with an actual API call)
 const fetchProblemData = (): Promise<IProblemData> => {
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve(ProblemData.problem as IProblemData); // Resolve the problem data after a simulated delay
+      resolve(ProblemData.problem as IProblemData);
     }, 1000);
   });
 };
@@ -105,6 +100,7 @@ ${problem?.hints.map((val: string, index: number) => `\` ${val} \``).join('  ')}
         <ResizableHandle className="border-gold border-2" />
         <ResizablePanel className="w-[50%] text-4xl min-w-[30%]">
           <CodeEditor code={code} language={language} setCode={setCode} setLanguage={setLanguage} />
+          <Submit submissionData={problem} />
         </ResizablePanel>
       </ResizablePanelGroup>
     </div>

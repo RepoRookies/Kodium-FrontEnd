@@ -68,11 +68,17 @@ const Login: React.FC = () => {
   const navigate = useNavigate();
   const onSubmit = (values: AdminLogin | UserLogin) => {
     if (values) {
+      const loginSuccess: boolean = true;
       console.log(JSON.stringify(values));
-      toast.success(
-        `Welcome ${activeTab === 'admin' ? 'Kodium Admin' : userSchema.parse(values).username}!`
-      );
-      navigate('/');
+      if (loginSuccess) {
+        toast.success(
+          `Welcome ${activeTab === 'admin' ? 'Kodium Admin' : userSchema.parse(values).username}!`
+        );
+        navigate('/');
+      } else {
+        const error: string = 'Please Try Again.';
+        toast.error(error);
+      }
     }
   };
 
