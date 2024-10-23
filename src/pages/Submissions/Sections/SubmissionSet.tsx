@@ -1,11 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ISubmissionData } from './submission.interface';
 import {
   getDifficultyColor,
   getLangForMonacoEditor,
   getLangColor,
   getVerdictColor,
+  getLanguage
 } from '@/lib/utils';
 import MonacoEditor from '@monaco-editor/react';
 import {
@@ -28,58 +29,84 @@ import {
 } from '@/components/ui/drawer';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { useUserSubmissions } from '@/hooks/queries';
+import { useAuth } from '@/hooks/useAuth';
+import { toast } from 'sonner';
+import FlickerTitle from '@/components/FlickerEffect/FlickerEffectTitle';
 
-type Submissions = ISubmissionData[];
+// type Submissions = ISubmissionData[];
 
-const submissions: Submissions = [
-  {
-    problem: 'Problem 1',
-    problemUrl: 'binary-search',
-    difficulty: 'Easy',
-    language: 'C/C++',
-    code: 'int main() { return 0; }',
-    verdict: 'Accepted',
-    isCorrect: true,
-  },
-  {
-    problem: 'Problem 2',
-    problemUrl: 'binary-search',
-    difficulty: 'Medium',
-    language: 'Java',
-    code: 'public class HelloWorld { public static void main(String[] args) { System.out.println("Hello, World!"); } }',
-    verdict: 'Accepted',
-    isCorrect: true,
-  },
-  {
-    problem: 'Problem 3',
-    problemUrl: 'binary-search',
-    difficulty: 'Hard',
-    language: 'Python',
-    code: 'print("Hello, World!")',
-    verdict: 'Time Limit Exceeded',
-    isCorrect: false,
-  },
-  {
-    problem: 'Problem 4',
-    problemUrl: 'binary-search',
-    difficulty: 'Easy',
-    language: 'C/C++',
-    code: 'int main() { return 0; }',
-    verdict: 'Accepted',
-    isCorrect: true,
-  },
-  {
-    problem: 'Problem 5',
-    problemUrl: 'binary-search',
-    difficulty: 'Medium',
-    language: 'Java',
-    code: 'public class HelloWorld { public static void main(String[] args) { System.out.println("Hello, World!"); } }\n',
-    verdict: 'Wrong Answer',
-    isCorrect: false,
-  },
-];
+// const submissions: Submissions = [
+//   {
+//     problem: 'Problem 1',
+//     problemUrl: 'binary-search',
+//     difficulty: 'Easy',
+//     language: 'C/C++',
+//     code: 'int main() { return 0; }',
+//     verdict: 'Accepted',
+//     isCorrect: true,
+//   },
+//   {
+//     problem: 'Problem 2',
+//     problemUrl: 'binary-search',
+//     difficulty: 'Medium',
+//     language: 'Java',
+//     code: 'public class HelloWorld { public static void main(String[] args) { System.out.println("Hello, World!"); } }',
+//     verdict: 'Accepted',
+//     isCorrect: true,
+//   },
+//   {
+//     problem: 'Problem 3',
+//     problemUrl: 'binary-search',
+//     difficulty: 'Hard',
+//     language: 'Python',
+//     code: 'print("Hello, World!")',
+//     verdict: 'Time Limit Exceeded',
+//     isCorrect: false,
+//   },
+//   {
+//     problem: 'Problem 4',
+//     problemUrl: 'binary-search',
+//     difficulty: 'Easy',
+//     language: 'C/C++',
+//     code: 'int main() { return 0; }',
+//     verdict: 'Accepted',
+//     isCorrect: true,
+//   },
+//   {
+//     problem: 'Problem 5',
+//     problemUrl: 'binary-search',
+//     difficulty: 'Medium',
+//     language: 'Java',
+//     code: 'public class HelloWorld { public static void main(String[] args) { System.out.println("Hello, World!"); } }\n',
+//     verdict: 'Wrong Answer',
+//     isCorrect: false,
+//   },
+// ];
 
 const SubmissionSet: React.FC = () => {
+  const {auth} = useAuth()
+  const navigate = useNavigate()
+  if(!auth){
+    toast.error(`Please login to see submissions`)
+    navigate('/login')
+  }
+  const {data:submissions,isError,isLoading} = useUserSubmissions(auth!)
+  if (isLoading) {
+    return (
+      <div className="w-full h-full text-center">
+        <FlickerTitle className="mt-36 text-4xl">Loading . . .</FlickerTitle>
+      </div>
+    );
+  }
+  if(isError){
+    toast.error(`Error fetching Problem`)
+    return (
+      <div className="w-full h-full text-center">
+        <FlickerTitle className="mt-36 text-4xl">Error</FlickerTitle>
+      </div>
+    );
+  }
   return (
     <Table className="text-primary-foreground">
       <TableHeader>
@@ -92,11 +119,11 @@ const SubmissionSet: React.FC = () => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {submissions.map((submission, index) => (
+        {submissions?.map((submission:ISubmissionData, index:number) => (
           <TableRow key={index}>
             <TableCell className="w-96">
-              <Link to={`/problems/${submission.problemUrl}`} className="hover:text-sky">
-                {submission.problem}
+              <Link to={`/problems/${submission.problemTitle}`} className="hover:text-sky">
+                {submission.problemName}
               </Link>
             </TableCell>
             <TableCell
@@ -113,7 +140,7 @@ const SubmissionSet: React.FC = () => {
                 getLangColor(submission.language)
               )}
             >
-              {submission.language}
+              {getLanguage(submission.language)}
             </TableCell>
             <TableCell className="text-center">
               <Drawer>
@@ -138,7 +165,7 @@ const SubmissionSet: React.FC = () => {
                       }}
                       language={getLangForMonacoEditor(submission.language)}
                       theme="vs-dark"
-                      value={submission.code}
+                      value={submission.program}
                     />
                   </DrawerDescription>
                   <DrawerFooter>
@@ -154,7 +181,7 @@ const SubmissionSet: React.FC = () => {
             <TableCell
               className={cn(
                 'text-right font-semibold tracking-wide',
-                getVerdictColor(submission.isCorrect)
+                getVerdictColor(submission.verdict===`Accepted`)
               )}
             >
               {submission.verdict}

@@ -55,7 +55,18 @@ export function getLangColor(lang: Language | string | undefined) {
       return 'text-sky';
   }
 }
-
+export function getLanguage(lang:Language){
+  switch (lang?.toLowerCase()) {
+    case 'java':
+      return 'Java';
+    case 'python':
+      return 'Python';
+    case 'cpp':
+      return 'C/C++';
+    default:
+      return "Unknown"
+  }
+}
 export function getVerdictColor(isCorrect: boolean) {
   return isCorrect ? 'text-success' : 'text-destructive';
 }

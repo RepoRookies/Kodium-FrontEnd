@@ -30,22 +30,22 @@ const TopicSet = () => {
     {
       title: 'Bit Manipulation',
       editorialLink: '/learn/bit-manipulation',
-      problemLink: '',
+      problemLink: '/problems/count-set-bits',
     },
     {
       title: 'Recursion',
       editorialLink: '/learn/recursion',
-      problemLink: '',
+      problemLink: '/problems/subset-sum',
     },
     {
       title: 'Binary Search',
       editorialLink: '/learn/binary-search',
-      problemLink: '',
+      problemLink: '/problems/binary-search',
     },
     {
       title: 'Merge Sort',
       editorialLink: '/learn/merge-sort',
-      problemLink: '',
+      problemLink: '/problems/merge-sort',
     },
   ];
 

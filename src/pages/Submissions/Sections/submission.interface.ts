@@ -1,11 +1,11 @@
 import { Difficulty, Language } from '@/types/types';
 
 export interface ISubmissionData {
-  problem: string;
-  problemUrl: string;
+  problemName: string;
+  problemTitle: string;
   difficulty: Difficulty;
   language: Language;
-  code: string;
+  program: string;
   verdict: string;
-  isCorrect: boolean;
+  // isCorrect: boolean;
 }

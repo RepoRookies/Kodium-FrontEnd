@@ -32,6 +32,7 @@ const Problem: React.FC = () => {
   // const [loadingstate, setLoadingState] = useState<boolean>(true);
   const [code, setCode] = useState<string>(`// Your Code Goes Here `);
   const [language, setLanguage] = useState<string>('cpp');
+  console.log(code)
   const [leftPanelText, setLeftPanelText] = useState<string>(`
 ## Problem Description
 ##### Lorem Ipsum dolor .....
@@ -124,7 +125,7 @@ ${problem?.hints.map((val: string,
         <ResizableHandle className="border-gold border-2" />
         <ResizablePanel className="w-[50%] text-4xl min-w-[30%]">
           <CodeEditor code={code} language={language} setCode={setCode} setLanguage={setLanguage} />
-          <Submit submissionData={problem} />
+          <Submit problem={problem} code={code} language={language} />
         </ResizablePanel>
       </ResizablePanelGroup>
     </div>
