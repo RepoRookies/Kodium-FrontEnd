@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { IProblemData } from './problem.interface';
 import { useAuth } from '@/hooks/useAuth';
 import axios from 'axios';
+import { useQueryClient } from '@tanstack/react-query';
 
 interface props {
   problem:IProblemData | undefined,
@@ -13,6 +14,7 @@ interface props {
 }
 
 const Submit: React.FC<props> = ({ problem,code,language }) => {
+  const queryClient = useQueryClient()
   const [loadingstate, setLoadingState] = useState<boolean>(false);
   const timeout = 3000;
   const navigate = useNavigate();
@@ -54,7 +56,6 @@ const Submit: React.FC<props> = ({ problem,code,language }) => {
       }
       else if (problem&&code&&language) {
       
-        // Submit Code to Sphere Engine
         const {difficulty,title} = problem
         const payload = {program:code,language,problemTitle:title,difficulty,problemName:problem.displayName}
         console.log(payload)
@@ -63,6 +64,7 @@ const Submit: React.FC<props> = ({ problem,code,language }) => {
         const submission = await axios.post(`${server_url}/app/v1/submission`,payload,{ headers: { Authorization: `Bearer ${auth.token}` },withCredentials:true})
         if(submission.data.success) submissionSuccess = true
         if (submissionSuccess) {
+          queryClient.invalidateQueries({queryKey:['submission',auth]})
           toast.success('Submitted Successfully!');
           navigate('/submissions');
         } else {

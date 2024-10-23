@@ -10,6 +10,7 @@ import Submit from '@/pages/ProblemCode/Sections/Submit';
 // import ProblemData from '@/pages/ProblemCode/Sections/problem.data.json';
 import { useProblemDetails } from '@/hooks/queries';
 import { toast } from 'sonner';
+import Run from './Sections/Run';
 
 // const fetchProblemData = (): Promise<IProblemData> => {
 //   return new Promise((resolve) => {
@@ -31,6 +32,8 @@ const Problem: React.FC = () => {
   // const [problem, setProblem] = useState<IProblemData | null>(null);
   // const [loadingstate, setLoadingState] = useState<boolean>(true);
   const [code, setCode] = useState<string>(`// Your Code Goes Here `);
+  const [input,setInput] =useState<string>("")
+  const [output,setOutput] =useState<string>("")
   const [language, setLanguage] = useState<string>('cpp');
   console.log(code)
   const [leftPanelText, setLeftPanelText] = useState<string>(`
@@ -112,7 +115,6 @@ ${problem?.hints.map((val: string,
       </div>
     );
   }
-
   return (
     <div className="min-h-[100vh] w-full p-0 ">
       <ResizablePanelGroup
@@ -124,8 +126,28 @@ ${problem?.hints.map((val: string,
         </ResizablePanel>
         <ResizableHandle className="border-gold border-2" />
         <ResizablePanel className="w-[50%] text-4xl min-w-[30%]">
+          <div className='w-[100%] h-[100%]'>
           <CodeEditor code={code} language={language} setCode={setCode} setLanguage={setLanguage} />
-          <Submit problem={problem} code={code} language={language} />
+            <div className='grid grid-cols-2  w-[100%] justify-center m-auto gap-5 mt-5 h-[15%]'>
+              <textarea 
+                value={input}
+                onChange={(e)=>setInput(e.target.value)}
+                className=" text-sm w-[90%] justify-center m-auto h-[100%] bg-[#1e1e1e] rounded-lg p-2 text-slate-400" 
+                placeholder="Input Goes Here"
+              />
+              <textarea 
+                readOnly
+                value={output}
+                className=" text-sm w-[90%] justify-center m-auto h-[100%] bg-[#1e1e1e] rounded-lg p-2 text-slate-400" 
+                placeholder="Output Goes Here (First 255 bytes only)"
+              />
+            </div>
+            <div className='flex justify-end mt-2'>
+              <Run code={code} language={language} input={input} setOutput={setOutput}/>
+              <Submit problem={problem} code={code} language={language} />
+            </div>
+          </div>  
+      
         </ResizablePanel>
       </ResizablePanelGroup>
     </div>
