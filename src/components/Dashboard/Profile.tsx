@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { IUserData } from './user.interface';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
@@ -15,16 +15,26 @@ import {
 import { Button } from '@/components/ui/button';
 import Logout from '@/pages/Logout/Logout';
 import { ShieldBan } from 'lucide-react';
-
-const user: IUserData = {
-  id: '0',
-  name: 'Kodium Admin',
-  email: 'kodium@iiitk.ac.in',
-  username: 'Kodium-Admin',
-};
+import { useAuth } from '@/hooks/useAuth';
+import { toast } from 'sonner';
+// const user: IUserData = {
+//   id: '0',
+//   name: 'Kodium Admin',
+//   email: 'kodium@iiitk.ac.in',
+//   username: 'Kodium-Admin',
+// };
 
 const Profile: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const {auth} = useAuth()
+  const navigate = useNavigate()
+  useEffect(()=>{
+    if(!auth){
+      toast.error(`You are not logged in`)
+      navigate('/login')
+    }
+  })
+  const user:IUserData = auth!
   const location = useLocation();
   useEffect(() => {
     setIsOpen(false);

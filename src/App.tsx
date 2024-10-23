@@ -21,8 +21,14 @@ import Contest from './pages/Contest/Contest.tsx';
 import Login from './pages/Login/Login.tsx';
 import Register from './pages/Register/Register.tsx';
 
+import { QueryClient,  QueryClientProvider} from '@tanstack/react-query'
+import { AuthProvider } from './context/AuthProvider.tsx';
+
 const App: React.FC = () => {
+  const queryClient = new QueryClient()
   return (
+    <QueryClientProvider client={queryClient}>
+    <AuthProvider>
     <div className="min-h-screen bg-primary/85">
       <Toaster
         position="bottom-left"
@@ -51,6 +57,9 @@ const App: React.FC = () => {
         <Route path="/register" element={<Register />} />
       </Routes>
     </div>
+    </AuthProvider>
+    </QueryClientProvider>
+
   );
 };
 

@@ -10,6 +10,7 @@ import {
 } from '@/components/ui/navigation-menu';
 import { Button } from '@/components/ui/button';
 import Profile from '@/components/Dashboard/Profile';
+import { useAuth } from '@/hooks/useAuth.ts';
 
 interface NavigationElement {
   label: string;
@@ -17,7 +18,8 @@ interface NavigationElement {
 }
 
 const NavBar: React.FC = () => {
-  const isLoggedIn: boolean = false;
+  const {auth} = useAuth()
+  const isLoggedIn: boolean = auth !== null;
   const [active, setActive] = useState<string>(useLocation().pathname);
 
   const navigationElements: NavigationElement[] = [

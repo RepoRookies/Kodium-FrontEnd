@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import axios from 'axios';
 import {
   Form,
   FormControl,
@@ -42,6 +43,8 @@ const userSchema = z
 type UserRegister = z.infer<typeof userSchema>;
 
 const Register: React.FC = () => {
+  const server_url = import.meta.env.VITE_SERVER_URL
+  // console.log(server_url)
   const fields = [
     { label: 'Name', id: 'name', placeholder: 'Kodium User' },
     { label: 'Email', id: 'email', placeholder: 'kodium@iiitkottayam.ac.in' },
@@ -68,18 +71,29 @@ const Register: React.FC = () => {
 
   const handleValidation = (values: UserRegister) => {
     setFormData(values);
-    setIsDialogOpen(true);
+    setIsDialogOpen(true); 
   };
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     if (formData) {
-      const registerSuccess: boolean = true;
+
+      let registerSuccess: boolean = false
+      try{
+        const createUser = await axios.post(`${server_url}/app/v1/user/register`,formData)
+        // console.log(createUser.data)
+        if(createUser.data.success)registerSuccess = true
+      }
+      catch(error){
+        console.log(error)
+        registerSuccess = false
+      }
+
       console.log(JSON.stringify(formData));
       if (registerSuccess) {
         toast.success('Registered Successfully! You are all Set to Login');
         navigate('/login');
       } else {
-        const error: string = 'Please Try Again.';
+        const error: string = "Please Try Again";
         toast.error(error);
       }
     }

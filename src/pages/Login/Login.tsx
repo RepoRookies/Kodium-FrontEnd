@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import axios from 'axios';
 import {
   Form,
   FormControl,
@@ -16,6 +17,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { Input } from '@/components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { toast } from 'sonner';
+import { useAuth } from '@/hooks/useAuth';
 
 const adminSchema = z.object({
   key: z.string().min(1, 'Key is Required!'),
@@ -31,6 +33,8 @@ type AdminLogin = z.infer<typeof adminSchema>;
 type UserLogin = z.infer<typeof userSchema>;
 
 const Login: React.FC = () => {
+  const {auth,setAuth} = useAuth()
+  console.log(auth)
   const [activeTab, setActiveTab] = useState('user');
   const loginTabs = [
     {
@@ -66,9 +70,31 @@ const Login: React.FC = () => {
   });
 
   const navigate = useNavigate();
-  const onSubmit = (values: AdminLogin | UserLogin) => {
+  const server_url = import.meta.env.VITE_SERVER_URL
+
+  useEffect(()=>{
+    if(auth){
+      toast.error(`You are already logged in`);
+      navigate('/')
+    }
+  })
+  const onSubmit = async (values: AdminLogin | UserLogin) => {
+    
     if (values) {
-      const loginSuccess: boolean = true;
+      let loginSuccess: boolean = false;
+      try{
+        const loginUser = await axios.post(`${server_url}/app/v1/user/login`,values)
+        // console.log(loginUser.data)
+        if(loginUser.data.success){
+          // console.log(loginUser.data.user as IAuth)
+          setAuth(prev=>({...prev,...loginUser.data.user}))
+          loginSuccess = true
+        }
+      }
+      catch(error){
+        console.log(error)
+        loginSuccess = false
+      }
       console.log(JSON.stringify(values));
       if (loginSuccess) {
         toast.success(

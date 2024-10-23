@@ -18,6 +18,7 @@ const fetchProblemData = (): Promise<IProblemData> => {
 
 const Problem: React.FC = () => {
   const { id: problemId } = useParams<string>();
+  console.log(problemId)
   const [problem, setProblem] = useState<IProblemData | null>(null);
   const [loadingstate, setLoadingState] = useState<boolean>(true);
   const [code, setCode] = useState<string>(`// Your Code Goes Here `);
@@ -66,17 +67,23 @@ const Problem: React.FC = () => {
 |--|--|
 ${problem?.exampleTestCases
   .map(
-    (val: { input: number[]; output: number[] }, index: number) =>
+    (val: { input: number[]; output: number[] }
+      // , index: number
+    ) =>
       `| ${val.input.map((e) => e.toString()).join(' ')} | ${val.output.map((e) => e.toString()).join(' ')} |`
   )
   .join('\n')}
 ${problem?.constraints?.length ? `### Constraints` : ``}
 \`\`\`
-${problem?.constraints.map((val: string, index: number) => `${val}`).join('\n')}
+${problem?.constraints.map((val: string, 
+  // index: number
+) => `${val}`).join('\n')}
 \`\`\`
 
 ${problem?.constraints?.length ? `### Hints` : ``}
-${problem?.hints.map((val: string, index: number) => `\` ${val} \``).join('  ')}
+${problem?.hints.map((val: string, 
+  // index: number
+  )   => `\` ${val} \``).join('  ')}
 `);
   }, [problem]);
 
