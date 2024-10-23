@@ -51,7 +51,7 @@ const Profile: React.FC = () => {
         </Avatar>
       </SheetTrigger>
       <SheetContent className="bg-primary cursor-default">
-        <SheetHeader>
+        <SheetHeader> 
           <SheetTitle className="text-gold font-bold">
             <div className="mt-4 w-full">
               <Avatar className="h-16 w-16 text-primary font-bold mx-auto">

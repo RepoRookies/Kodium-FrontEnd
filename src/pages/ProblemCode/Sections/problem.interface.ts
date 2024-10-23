@@ -1,5 +1,6 @@
 export interface IProblemData {
   id: number;
+  displayName:string,
   title: string;
   difficulty: string;
   tags: string[];
@@ -8,8 +9,8 @@ export interface IProblemData {
   output_format: string;
   constraints: string[];
   exampleTestCases: {
-    input: number[];
-    output: number[];
+    input: string;
+    output: string;
   }[];
   hints: string[];
 }

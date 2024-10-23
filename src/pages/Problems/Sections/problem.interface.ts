@@ -2,6 +2,7 @@ import { Difficulty, Status } from '@/types/types';
 
 export interface IProblemData {
   status: Status;
+  displayName:string,
   title: string;
   tags: string[];
   description: string;
