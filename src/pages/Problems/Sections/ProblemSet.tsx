@@ -1,37 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { IProblemData } from './problem.interface';
+import { getStatusIcon, getDifficultyColor } from '@/lib/utils';
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { Circle, CircleCheckBig, CircleFadingPlus, Tags } from 'lucide-react';
+
 import { cn } from '@/lib/utils';
 
-type Status = 'Attempted' | 'Unattempted' | 'Answered';
-type Difficulty = 'Easy' | 'Medium' | 'Hard';
-
-interface Problem {
-  status: Status;
-  title: string;
-  url: string;
-  tags: string[];
-  difficulty: Difficulty;
-}
-
-type Problems = Problem[];
+type Problems = IProblemData[];
 
 const problems: Problems = [
   {
     status: 'Unattempted',
     title: 'Search Insert Position',
-    url: '/problems/search-insert-position',
+    url: 'search-insert-position',
     tags: ['Array', 'Binary Search'],
     difficulty: 'Easy',
   },
@@ -79,37 +68,11 @@ const problems: Problems = [
   },
 ];
 
-const getStatusIcon = (status: Status) => {
-  switch (status) {
-    case 'Unattempted':
-      return <Circle className="text-primary-foreground" />;
-    case 'Attempted':
-      return <CircleFadingPlus className="text-destructive" />;
-    case 'Answered':
-      return <CircleCheckBig className="text-success" />;
-    default:
-      return <Circle />;
-  }
-};
-
-const getDifficultyColor = (difficulty: Difficulty) => {
-  switch (difficulty) {
-    case 'Easy':
-      return 'text-success';
-    case 'Medium':
-      return 'text-gold';
-    case 'Hard':
-      return 'text-destructive';
-    default:
-      return 'text-primary-foreground';
-  }
-};
-
 const ProblemSet: React.FC = () => {
   return (
     <Table className="text-primary-foreground font-regular">
       <TableHeader>
-        <TableRow className="bg-gold">
+        <TableRow className="bg-gold text-primary text-lg font-bold tracking-wide uppercase">
           <TableHead className="w-4">Status</TableHead>
           <TableHead>Title</TableHead>
           <TableHead className="text-center">Difficulty</TableHead>
