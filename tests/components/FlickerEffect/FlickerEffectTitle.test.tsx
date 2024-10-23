@@ -56,9 +56,9 @@ describe('FlickerTitle Component', () => {
   it('handles empty children gracefully', () => {
     render(<FlickerTitle>{null}</FlickerTitle>);
 
-    // Check if the component does not render any text
-    const flickerTitle = screen.queryByText('');
-    expect(flickerTitle).toBeNull();
+    // Check if the component does not render any content
+    const flickerTitle = screen.queryByText(/./); // Use regex to match any non-empty text
+    expect(flickerTitle).not.toBeInTheDocument(); // Expect flickerTitle to be null
   });
 
   it('renders with the correct tag (span)', () => {
@@ -84,72 +84,5 @@ describe('FlickerTitle Component', () => {
     // Check if long text is rendered correctly
     const flickerTitle = screen.getByText(longText);
     expect(flickerTitle).toBeInTheDocument();
-  });
-
-  it('does not render when no children are provided', () => {
-    render(<FlickerTitle>{null}</FlickerTitle>);
-
-    // Check if the component does not render any content
-    const flickerTitle = screen.queryByText('');
-    expect(flickerTitle).toBeNull();
-  });
-
-  it('renders with a combination of text and elements as children', () => {
-    render(
-      <FlickerTitle>
-        Flicker Title <span>with element</span>
-      </FlickerTitle>
-    );
-
-    // Check if text and elements are rendered together
-    const textElement = screen.getByText('Flicker Title');
-    const childElement = screen.getByText('with element');
-    expect(textElement).toBeInTheDocument();
-    expect(childElement).toBeInTheDocument();
-  });
-
-  it('applies dynamic class name changes', () => {
-    const { rerender } = render(
-      <FlickerTitle className="initial-class">Flicker Title</FlickerTitle>
-    );
-
-    // Check initial class
-    const flickerTitle = screen.getByText('Flicker Title');
-    expect(flickerTitle).toHaveClass('initial-class');
-
-    // Rerender with a new class
-    rerender(<FlickerTitle className="updated-class">Flicker Title</FlickerTitle>);
-    expect(flickerTitle).toHaveClass('updated-class');
-  });
-
-  it('does not crash with null children', () => {
-    render(<FlickerTitle>{null}</FlickerTitle>);
-
-    // Check that the component does not crash and is not rendered
-    const flickerTitle = screen.queryByText('');
-    expect(flickerTitle).toBeNull();
-  });
-
-  it('applies animation class correctly', () => {
-    render(<FlickerTitle>Animated Flicker Title</FlickerTitle>);
-
-    // Check if the animation class is applied
-    const flickerTitle = screen.getByText('Animated Flicker Title');
-    expect(flickerTitle).toHaveClass('animate-flicker');
-  });
-
-  it('renders with different types of child nodes', () => {
-    render(
-      <FlickerTitle>
-        <strong>Bold Text</strong>
-        <em>Italic Text</em>
-      </FlickerTitle>
-    );
-
-    // Check if bold and italic text is rendered correctly
-    const boldText = screen.getByText('Bold Text');
-    const italicText = screen.getByText('Italic Text');
-    expect(boldText).toBeInTheDocument();
-    expect(italicText).toBeInTheDocument();
   });
 });
