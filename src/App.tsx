@@ -29,8 +29,9 @@ const App: React.FC = () => {
   
   
   return (
-    <QueryClientProvider client={queryClient}>
     <AuthProvider>
+    <QueryClientProvider client={queryClient}>
+
     <div className="min-h-screen bg-primary/85">
       <Toaster
         position="bottom-left"
@@ -59,8 +60,9 @@ const App: React.FC = () => {
         <Route path="/register" element={<Register />} />
       </Routes>
     </div>
-    </AuthProvider>
+
     </QueryClientProvider>
+    </AuthProvider>
 
   );
 };
