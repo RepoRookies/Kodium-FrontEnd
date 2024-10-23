@@ -6,7 +6,7 @@ import FlickerTitle from '@/components/FlickerEffect/FlickerEffectTitle';
 import MarkdownRenderer from '@/pages/ProblemCode/Sections/MarkdownRenderer';
 import CodeEditor from '@/pages/ProblemCode/Sections/CodeEditor';
 import Submit from '@/pages/ProblemCode/Sections/Submit';
-import { IProblemData } from '@/pages/ProblemCode/Sections/problem.interface';
+// import { IProblemData } from '@/pages/ProblemCode/Sections/problem.interface';
 // import ProblemData from '@/pages/ProblemCode/Sections/problem.data.json';
 import { useProblemDetails } from '@/hooks/queries';
 import { toast } from 'sonner';
@@ -119,7 +119,7 @@ ${problem?.hints.map((val: string,
         className="max-w-full rounded-lg md:min-w-[450px]"
       >
         <ResizablePanel className="w-[50%] text-4xl min-w-[30%]">
-          <MarkdownRenderer problem={problem} markdown={leftPanelText} />
+          <MarkdownRenderer problem={problem!} markdown={leftPanelText} />
         </ResizablePanel>
         <ResizableHandle className="border-gold border-2" />
         <ResizablePanel className="w-[50%] text-4xl min-w-[30%]">
