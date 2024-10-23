@@ -12,7 +12,7 @@ import BinarySearchGuide from './pages/Learn/Topics/BinarySearchGuide.tsx';
 import MergeSortGuide from './pages/Learn/Topics/MergeSortGuide.tsx';
 import ArraysGuide from './pages/Learn/Topics/ArraysGuide.tsx';
 import BitManipulationGuide from './pages/Learn/Topics/BitManipulationGuide.tsx';
-import RecursionGuide from './pages/Learn/Topics/RecursionGuide.tsx';
+import RecursionGuide from './pages/Learn/Topics/RecursionGuide.tsx'; 
 
 import Problems from './pages/Problems/Problems.tsx';
 import Submissions from './pages/Submissions/Submissions.tsx';
@@ -26,6 +26,8 @@ import { AuthProvider } from './context/AuthProvider.tsx';
 
 const App: React.FC = () => {
   const queryClient = new QueryClient()
+  
+  
   return (
     <QueryClientProvider client={queryClient}>
     <AuthProvider>

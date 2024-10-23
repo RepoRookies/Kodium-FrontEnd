@@ -11,6 +11,8 @@ import {
 import { Button } from '@/components/ui/button';
 import Profile from '@/components/Dashboard/Profile';
 import { useAuth } from '@/hooks/useAuth.ts';
+import { useRefresh } from '@/hooks/useRefresh.ts';
+
 
 interface NavigationElement {
   label: string;
@@ -21,7 +23,7 @@ const NavBar: React.FC = () => {
   const {auth} = useAuth()
   const isLoggedIn: boolean = auth !== null;
   const [active, setActive] = useState<string>(useLocation().pathname);
-
+  useRefresh()
   const navigationElements: NavigationElement[] = [
     { label: 'Home', path: '/' },
     { label: 'Learn', path: '/learn' },
