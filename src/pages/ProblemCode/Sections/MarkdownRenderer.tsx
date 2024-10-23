@@ -8,7 +8,7 @@ import { Card } from '@/components/ui/card';
 import { getDifficultyColor, getStatusIcon } from '@/lib/utils';
 
 interface props {
-  problem: IProblemData | null;
+  problem: IProblemData | any;
   markdown: string;
 }
 
@@ -38,7 +38,7 @@ const MarkdownRenderer: React.FC<props> = ({ problem, markdown }) => {
               <div className="text-3xl text-gold font-bold tracking-wider" {...props} />
             ),
             h3: ({ node, ...props }) => <div className="text-2xl" {...props} />,
-            h4: ({ node, ...props }) => <div className="text-xl" {...props} />,
+            h4: ({ node, ...props }) => <div className="text-lg" {...props} />,
             h5: ({ node, ...props }) => <div className="text-lg" {...props} />,
             h6: ({ node, ...props }) => <div className="text-base" {...props} />,
             code: ({ node, ...props }) => (
@@ -46,7 +46,7 @@ const MarkdownRenderer: React.FC<props> = ({ problem, markdown }) => {
             ),
             // Override the default <table> rendering
             table: ({ node, ...props }) => (
-              <div className="flex rounded-sm overflow-hidden my-4">
+              <div className="flex rounded-sm overflow-hidden my-4 font-mono">
                 <Table {...props} className="p-4 mx-auto">
                   {props.children}
                 </Table>
@@ -62,7 +62,7 @@ const MarkdownRenderer: React.FC<props> = ({ problem, markdown }) => {
             th: ({ node, ...props }) => (
               <TableCell
                 {...props}
-                className="px-4 py-2 text-md text-primary bg-gold font-bold tracking-wider"
+                className="px-4 py-2 text-xl text-primary bg-gold font-bold tracking-wider"
               />
             ),
             td: ({ node, ...props }) => <TableCell className="px-4 py-2" {...props} />,
