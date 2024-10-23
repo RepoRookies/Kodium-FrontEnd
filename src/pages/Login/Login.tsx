@@ -83,7 +83,7 @@ const Login: React.FC = () => {
     if (values) {
       let loginSuccess: boolean = false;
       try{
-        const loginUser = await axios.post(`${server_url}/app/v1/user/login`,values)
+        const loginUser = await axios.post(`${server_url}/app/v1/user/login`,values,{withCredentials:true})
         // console.log(loginUser.data)
         if(loginUser.data.success){
           // console.log(loginUser.data.user as IAuth)

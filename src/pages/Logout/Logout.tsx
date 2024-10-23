@@ -13,14 +13,27 @@ import {
 } from '@/components/ui/alert-dialog';
 import { toast } from 'sonner';
 import { LogOut } from 'lucide-react';
+import axios from 'axios';
+import { useAuth } from '@/hooks/useAuth'; 
 
 const Logout: React.FC = () => {
+  const {auth,setAuth} = useAuth()
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const navigate = useNavigate();
-  const logOut = () => {
+  const server_url = import.meta.env.VITE_SERVER_URL
+  const logOut = async () => {
     //Logout Call and Updates
-    const loginSuccess: boolean = true;
-    if (loginSuccess) {
+
+    let logoutSuccess: boolean = false;
+    if(auth){
+      const logoutUser = await axios.get(`${server_url}/app/v1/user/logout`,{ headers: { Authorization: `Bearer ${auth.token}` },withCredentials:true})
+      if(logoutUser.data.success){
+        setAuth(null)
+        logoutSuccess = true
+      }
+    }
+    if (logoutSuccess) {
+
       toast.success('Logged Out Successfully!');
       navigate('/login');
     } else {
