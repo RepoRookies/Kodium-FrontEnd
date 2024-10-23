@@ -97,7 +97,7 @@ const ProblemSet: React.FC = () => {
             <TableCell>{getStatusIcon(/*problem.status*/ `Unattempted`)}</TableCell>
             <TableCell>
               <Link to={`/problems/${problem.title}`} className="hover:text-sky">
-                {problem.title}
+                {problem.displayName||problem.title}
               </Link>
             </TableCell>
             <TableCell className={cn('text-center', getDifficultyColor(problem.difficulty))}>
