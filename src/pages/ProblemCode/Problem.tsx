@@ -1,26 +1,35 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable';
 import FlickerTitle from '@/components/FlickerEffect/FlickerEffectTitle';
+
 import MarkdownRenderer from '@/pages/ProblemCode/Sections/MarkdownRenderer';
 import CodeEditor from '@/pages/ProblemCode/Sections/CodeEditor';
 import Submit from '@/pages/ProblemCode/Sections/Submit';
 import { IProblemData } from '@/pages/ProblemCode/Sections/problem.interface';
-import ProblemData from '@/pages/ProblemCode/Sections/problem.data.json';
+// import ProblemData from '@/pages/ProblemCode/Sections/problem.data.json';
+import { useProblemDetails } from '@/hooks/queries';
+import { toast } from 'sonner';
 
-const fetchProblemData = (): Promise<IProblemData> => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(ProblemData.problem as IProblemData);
-    }, 1000);
-  });
-};
+// const fetchProblemData = (): Promise<IProblemData> => {
+//   return new Promise((resolve) => {
+//     setTimeout(() => {
+//       resolve(ProblemData.problem as IProblemData);
+//     }, 1000);
+//   });
+// };
 
 const Problem: React.FC = () => {
-  const { id: problemId } = useParams<string>();
-  console.log(problemId)
-  const [problem, setProblem] = useState<IProblemData | null>(null);
-  const [loadingstate, setLoadingState] = useState<boolean>(true);
+  const { title } = useParams<string>();
+  const navigate = useNavigate()
+  if(!title){
+    toast.error(`Problem Does Not Exist`)
+    navigate('/')
+  }
+  const {data:problem,isLoading,isError} = useProblemDetails(title!)
+  console.log(problem)
+  // const [problem, setProblem] = useState<IProblemData | null>(null);
+  // const [loadingstate, setLoadingState] = useState<boolean>(true);
   const [code, setCode] = useState<string>(`// Your Code Goes Here `);
   const [language, setLanguage] = useState<string>('cpp');
   const [leftPanelText, setLeftPanelText] = useState<string>(`
@@ -52,25 +61,25 @@ const Problem: React.FC = () => {
     defaultCodeHandler(language);
   }, [language]);
 
-  useEffect(() => {
-    fetchProblemData().then((data) => {
-      setProblem(data);
-      setLoadingState(false);
-    });
-  }, []);
+  // useEffect(() => {
+  //   fetchProblemData().then((data) => {
+  //     setProblem(data);
+  //     setLoadingState(false);
+  //   });
+  // }, []);  
 
   useEffect(() => {
     setLeftPanelText(`
-## ${problem?.title} 
+## ${problem?.displayName || problem?.title} 
 #### ${problem?.description}
 | INPUT | OUTPUT  |
 |--|--|
 ${problem?.exampleTestCases
   .map(
-    (val: { input: number[]; output: number[] }
+    (val: { input: string; output: string }
       // , index: number
     ) =>
-      `| ${val.input.map((e) => e.toString()).join(' ')} | ${val.output.map((e) => e.toString()).join(' ')} |`
+      `| ${val.input} | ${val.output} |`
   )
   .join('\n')}
 ${problem?.constraints?.length ? `### Constraints` : ``}
@@ -87,10 +96,18 @@ ${problem?.hints.map((val: string,
 `);
   }, [problem]);
 
-  if (loadingstate) {
+  if (isLoading) {
     return (
       <div className="w-full h-full text-center">
         <FlickerTitle className="mt-36 text-4xl">Loading . . .</FlickerTitle>
+      </div>
+    );
+  }
+  if(isError){
+    toast.error(`Error fetching Problem`)
+    return (
+      <div className="w-full h-full text-center">
+        <FlickerTitle className="mt-36 text-4xl">Error</FlickerTitle>
       </div>
     );
   }

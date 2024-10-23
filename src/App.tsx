@@ -51,7 +51,7 @@ const App: React.FC = () => {
         <Route path="/learn/merge-sort" element={<MergeSortGuide />} />
 
         <Route path="/problems" element={<Problems />} />
-        <Route path="/problems/:id" element={<Problem />} />
+        <Route path="/problems/:title" element={<Problem />} />
         <Route path="/submissions" element={<Submissions />} />
         <Route path="/contest" element={<Contest />} />
 
