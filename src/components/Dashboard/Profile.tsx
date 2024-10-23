@@ -33,7 +33,10 @@ const Profile: React.FC = () => {
   return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
-        <Avatar className="h-9 w-9 text-primary font-bold" onClick={() => setIsOpen(true)}>
+        <Avatar
+          className="h-9 w-9 text-primary font-bold cursor-pointer"
+          onClick={() => setIsOpen(true)}
+        >
           <AvatarFallback className="bg-gold">{user.name.charAt(0).toUpperCase()}</AvatarFallback>
         </Avatar>
       </SheetTrigger>

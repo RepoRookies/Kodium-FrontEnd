@@ -46,7 +46,7 @@ const MarkdownRenderer: React.FC<props> = ({ problem, markdown }) => {
             ),
             // Override the default <table> rendering
             table: ({ node, ...props }) => (
-              <div className="flex rounded-md overflow-hidden my-4">
+              <div className="flex rounded-sm overflow-hidden my-4">
                 <Table {...props} className="p-4 mx-auto">
                   {props.children}
                 </Table>

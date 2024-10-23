@@ -19,8 +19,14 @@ const Logout: React.FC = () => {
   const navigate = useNavigate();
   const logOut = () => {
     //Logout Call and Updates
-    toast.success('Logged Out Successfully!');
-    navigate('/login');
+    const loginSuccess: boolean = true;
+    if (loginSuccess) {
+      toast.success('Logged Out Successfully!');
+      navigate('/login');
+    } else {
+      const error: string = 'Logout Error!';
+      toast.error(error);
+    }
   };
   return (
     <div>
